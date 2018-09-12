@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user_detail.UserDetailActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewDetail"
+            style="@style/tvDetailStyle"
+            android:contentDescription="@string/user_photo_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvIDDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewDetail" />
+
+        <TextView
+            android:id="@+id/tvIsActiveDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/is_active"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvIDDetail" />
+
+        <TextView
+            android:id="@+id/tvBalanceDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/balance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvIsActiveDetail" />
+
+        <TextView
+            android:id="@+id/tvAgeDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBalanceDetail" />
+
+        <TextView
+            android:id="@+id/tvEyeColorDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/eyecolor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAgeDetail" />
+
+        <TextView
+            android:id="@+id/tvNameDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/nameMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEyeColorDetail" />
+
+        <TextView
+            android:id="@+id/tvCompanyDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/companyMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameDetail" />
+
+        <TextView
+            android:id="@+id/tvGenderDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/genderMain"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCompanyDetail" />
+
+        <TextView
+            android:id="@+id/tvEmailDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGenderDetail" />
+
+
+        <TextView
+            android:id="@+id/tvPhoneDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEmailDetail" />
+
+        <TextView
+            android:id="@+id/tvAddressDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoneDetail" />
+
+        <TextView
+            android:id="@+id/tvRegisteredDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/registered"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAddressDetail" />
+
+        <TextView
+            android:id="@+id/tvFavoriteFruitDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/favoritefruit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvRegisteredDetail" />
+
+        <TextView
+            android:id="@+id/tvAboutDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/about"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFavoriteFruitDetail" />
+
+        <TextView
+            android:id="@+id/tvTagsDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/tags"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserAboutDetail" />
+
+        <TextView
+            android:id="@+id/tvFriendsDetail"
+            style="@style/tvDetailStyle"
+            android:text="@string/friends"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTagsDetail" />
+
+
+
+
+        <TextView
+            android:id="@+id/tvUserIDDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvIDDetail" />
+
+        <TextView
+            android:id="@+id/tvUserIsActiveDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvIsActiveDetail" />
+
+        <TextView
+            android:id="@+id/tvUserBalanceDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvBalanceDetail" />
+
+        <TextView
+            android:id="@+id/tvUserAgeDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAgeDetail" />
+
+        <TextView
+            android:id="@+id/tvUserEyeColorDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEyeColorDetail" />
+
+        <TextView
+            android:id="@+id/tvUserNameDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvNameDetail" />
+
+        <TextView
+            android:id="@+id/tvUserCompanyDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvCompanyDetail" />
+
+        <TextView
+            android:id="@+id/tvUserGenderDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvGenderDetail" />
+
+        <TextView
+            android:id="@+id/tvUserEmailDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvEmailDetail" />
+
+        <TextView
+            android:id="@+id/tvUserPhoneDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvPhoneDetail" />
+
+        <TextView
+            android:id="@+id/tvUserAddressDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAddressDetail" />
+
+        <TextView
+            android:id="@+id/tvUserRegisteredDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvRegisteredDetail" />
+
+        <TextView
+            android:id="@+id/tvUserFavoriteFruitDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvFavoriteFruitDetail" />
+
+        <TextView
+            android:id="@+id/tvUserAboutDetail"
+            style="@style/tvUserDetailStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvAboutDetail"
+            app:layout_constraintTop_toTopOf="@id/tvAboutDetail" />
+
+        <TextView
+            android:id="@+id/tvUserTagsDetail"
+            style="@style/tvUserDetailStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTagsDetail" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tvFriendsDetail"
+            app:layout_constraintTop_toTopOf="@+id/tvFriendsDetail">
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
