@@ -7,18 +7,12 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.JsonAdapter;
-import com.vladimir_khm.users.repository.Converters;
+import com.vladimir_khm.users.repository.DaoConverters;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import java.io.Serializable;
 import java.util.List;
-
-import static com.vladimir_khm.users.Constants.FORMATTER;
 
 @Entity
 @JsonAdapter(UserTypeAdapter.class)
@@ -37,7 +31,7 @@ public class User implements Serializable {
     private String mPhone;
     private String mAddress;
     private String mAbout;
-    @TypeConverters({Converters.class}) private DateTime mRegistered;
+    @TypeConverters({DaoConverters.class}) private DateTime mRegistered;
     private String mTags;
     @Ignore private List<Friend> mFriendList;
     private String mFavoriteFruit;
@@ -177,21 +171,6 @@ public class User implements Serializable {
 
     public String getEmail() {
         return mEmail;
-    }
-
-
-    public static void main(String[] args) {
-        String date = "2014-08-14T11:30:40 -03:00";
-        String date2 = date.replaceAll(" ", "");
-        System.out.println("string before " + date2);
-        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss ZZ");
-        //DateTime dateTime = dateTimeFormatter.parseDateTime("2014-08-14T11:30:40-03:00");
-        DateTime dateTime2 = DateTime.parse(date2);
-        String dateString = dateTimeFormatter.print(dateTime2);
-
-        System.out.println("string after " + dateString);
-        //System.out.println("date " + dateTime);
-        System.out.println("date2 " + dateTime2);
     }
 }
 

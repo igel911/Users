@@ -3,13 +3,30 @@ package com.vladimir_khm.users.model;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-
+import com.vladimir_khm.users.util.DateTimeConverter;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.vladimir_khm.users.Constants.*;
+import static com.vladimir_khm.users.Constants.FORMATTER;
+import static com.vladimir_khm.users.Constants.USER_ABOUT;
+import static com.vladimir_khm.users.Constants.USER_ADDRESS;
+import static com.vladimir_khm.users.Constants.USER_AGE;
+import static com.vladimir_khm.users.Constants.USER_BALANCE;
+import static com.vladimir_khm.users.Constants.USER_COMPANY;
+import static com.vladimir_khm.users.Constants.USER_EMAIL;
+import static com.vladimir_khm.users.Constants.USER_EYE_COLOR;
+import static com.vladimir_khm.users.Constants.USER_FAVORITE_FRUIT;
+import static com.vladimir_khm.users.Constants.USER_FRIENDS;
+import static com.vladimir_khm.users.Constants.USER_GENDER;
+import static com.vladimir_khm.users.Constants.USER_ID;
+import static com.vladimir_khm.users.Constants.USER_IS_ACTIVE;
+import static com.vladimir_khm.users.Constants.USER_NAME;
+import static com.vladimir_khm.users.Constants.USER_PHONE;
+import static com.vladimir_khm.users.Constants.USER_PICTURE;
+import static com.vladimir_khm.users.Constants.USER_REGISTERED;
+import static com.vladimir_khm.users.Constants.USER_TAGS;
 
 public class UserTypeAdapter extends TypeAdapter<User> {
 
@@ -97,7 +114,7 @@ public class UserTypeAdapter extends TypeAdapter<User> {
                     user.setAbout(reader.nextString());
                     break;
                 case USER_REGISTERED:
-                    user.setRegistered(FORMATTER.parseDateTime(reader.nextString()));
+                    user.setRegistered(DateTimeConverter.toDateTime(reader.nextString()));
                     break;
                 case USER_TAGS:
                     reader.beginArray();

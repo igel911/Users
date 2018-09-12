@@ -12,12 +12,12 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.vladimir_khm.users.R;
 import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.util.DateTimeConverter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.widget.LinearLayout.VERTICAL;
-import static com.vladimir_khm.users.Constants.FORMATTER;
 import static com.vladimir_khm.users.Constants.USER;
 
 public class UserDetailActivity extends AppCompatActivity {
@@ -63,7 +63,7 @@ public class UserDetailActivity extends AppCompatActivity {
         tvUserPhone.setText(user.getPhone());
         tvUserAddress.setText(user.getAddress());
         tvUserAbout.setText(user.getAbout());
-        tvUserRegistered.setText(FORMATTER.print(user.getRegistered()));
+        tvUserRegistered.setText(DateTimeConverter.toString(user.getRegistered()));
         tvUserFavoriteFruit.setText(user.getFavoriteFruit());
         tvUserTags.setText(user.getTags());
 
