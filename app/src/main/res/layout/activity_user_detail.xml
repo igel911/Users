@@ -129,7 +129,7 @@
             style="@style/tvDetailStyle"
             android:text="@string/friends"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTagsDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvUserTagsDetail" />
 
 
 

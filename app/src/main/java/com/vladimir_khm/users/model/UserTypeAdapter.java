@@ -32,7 +32,7 @@ public class UserTypeAdapter extends TypeAdapter<User> {
         writer.name(USER_REGISTERED).value(FORMATTER.print(user.getRegistered()));
         writer.name(USER_TAGS);
         writer.beginArray();
-        for (String tag : user.getTags().split(",")) {
+        for (String tag : user.getTags().split("\n")) {
             writer.value(tag);
         }
         writer.endArray();
@@ -103,7 +103,7 @@ public class UserTypeAdapter extends TypeAdapter<User> {
                     reader.beginArray();
                     StringBuilder builder = new StringBuilder();
                     while (reader.hasNext()) {
-                        builder.append(",").append(reader.nextString());
+                        builder.append("\n").append(reader.nextString());
                     }
                     user.setTags(builder.substring(1));
                     reader.endArray();
