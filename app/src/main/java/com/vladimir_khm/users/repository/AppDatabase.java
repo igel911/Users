@@ -9,5 +9,5 @@ import com.vladimir_khm.users.model.User;
 @Database(entities = {User.class, Friend.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
+    public abstract UserWithFriendsDao userWithFriendsDao();
 }

@@ -1,15 +1,15 @@
 package com.vladimir_khm.users.main;
 
-import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.model.UserWithFriends;
 
 import java.util.List;
 
 public interface MainContract {
 
     interface View {
-        void showUserList(List<User> userList);
+        void showUserList(List<UserWithFriends> userList);
 
-        void navigateToAnotherScreen(User user);
+        void navigateToAnotherScreen(UserWithFriends user);
     }
 
     interface Presenter {
@@ -17,7 +17,7 @@ public interface MainContract {
 
         void viewIsReady();
 
-        void onItemSelected(User user);
+        void onItemSelected(UserWithFriends user);
 
         void detachView();
     }

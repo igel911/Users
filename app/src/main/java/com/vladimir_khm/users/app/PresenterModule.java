@@ -6,7 +6,7 @@ import com.vladimir_khm.users.UsersApi;
 import com.vladimir_khm.users.main.MainContract;
 import com.vladimir_khm.users.main.MainPresenter;
 import com.vladimir_khm.users.repository.AppDatabase;
-import com.vladimir_khm.users.repository.UserDao;
+import com.vladimir_khm.users.repository.UserWithFriendsDao;
 
 import javax.inject.Singleton;
 
@@ -22,17 +22,17 @@ import static com.vladimir_khm.users.Constants.DATA_BASE_NAME;
 public class PresenterModule {
 
     @Provides
-    MainContract.Presenter provideMainPresenter(UserDao userDao, UsersApi usersApi) {
+    MainContract.Presenter provideMainPresenter(UserWithFriendsDao userDao, UsersApi usersApi) {
         return new MainPresenter(userDao, usersApi);
     }
 
     @Singleton
     @Provides
-    UserDao provideRepository() {
+    UserWithFriendsDao provideRepository() {
         AppDatabase database = Room
                 .databaseBuilder(App.getAppContext(), AppDatabase.class, DATA_BASE_NAME)
                 .build();
-        return database.userDao();
+        return database.userWithFriendsDao();
     }
 
     @Singleton

@@ -1,8 +1,8 @@
 package com.vladimir_khm.users.main;
 
-import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.model.UserWithFriends;
 
 public interface OnItemClickListener {
 
-    void onItemClick(User user);
+    void onItemClick(UserWithFriends user);
 }

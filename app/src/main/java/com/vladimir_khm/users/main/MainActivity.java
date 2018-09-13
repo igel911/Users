@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.vladimir_khm.users.R;
 import com.vladimir_khm.users.app.App;
-import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.model.UserWithFriends;
 import com.vladimir_khm.users.user_detail.UserDetailActivity;
 
 import java.util.List;
@@ -46,17 +46,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClick(User user) {
+    public void onItemClick(UserWithFriends user) {
         mPresenter.onItemSelected(user);
     }
 
     @Override
-    public void showUserList(List<User> userList) {
+    public void showUserList(List<UserWithFriends> userList) {
         mRecyclerView.setAdapter(new RecyclerAdapterMain(userList, this));
     }
 
     @Override
-    public void navigateToAnotherScreen(User user) {
+    public void navigateToAnotherScreen(UserWithFriends user) {
         Intent intent = new Intent(this, UserDetailActivity.class);
         intent.putExtra(USER, user);
         startActivity(intent);

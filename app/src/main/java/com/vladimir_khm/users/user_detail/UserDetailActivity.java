@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.vladimir_khm.users.R;
 import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.model.UserWithFriends;
 import com.vladimir_khm.users.util.DateTimeConverter;
 
 import butterknife.BindView;
@@ -47,7 +48,8 @@ public class UserDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_detail);
         ButterKnife.bind(this);
 
-        User user = (User) getIntent().getSerializableExtra(USER);
+        UserWithFriends userWithFriends = (UserWithFriends) getIntent().getSerializableExtra(USER);
+        User user = userWithFriends.getUser();
         Picasso.get()
                 .load(user.getPictureUrl())
                 .into(mImageView);
@@ -71,6 +73,6 @@ public class UserDetailActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration =
                 new DividerItemDecoration(mRecyclerView.getContext(), VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-        mRecyclerView.setAdapter(new RecyclerAdapterDetail(user.getFriendList()));
+        mRecyclerView.setAdapter(new RecyclerAdapterDetail(userWithFriends.getFriendList()));
     }
 }

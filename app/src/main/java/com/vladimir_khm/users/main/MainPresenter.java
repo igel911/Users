@@ -5,7 +5,8 @@ import android.util.Log;
 
 import com.vladimir_khm.users.UsersApi;
 import com.vladimir_khm.users.model.User;
-import com.vladimir_khm.users.repository.UserDao;
+import com.vladimir_khm.users.model.UserWithFriends;
+import com.vladimir_khm.users.repository.UserWithFriendsDao;
 
 import java.util.List;
 
@@ -17,14 +18,14 @@ import io.reactivex.schedulers.Schedulers;
 public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View mView;
-    private UserDao mUserDao;
+    private UserWithFriendsDao mUserDao;
     private UsersApi mUsersApi;
-    private List<User> mUserList;
+    private List<UserWithFriends> mUserList;
     private Disposable subscribe;
     private final String TAG = "tag";
 
 
-    public MainPresenter(UserDao userDao, UsersApi usersApi) {
+    public MainPresenter(UserWithFriendsDao userDao, UsersApi usersApi) {
         mUserDao = userDao;
         mUsersApi = usersApi;
     }
@@ -40,7 +41,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void loadUserListFromDB() {
-        subscribe = mUserDao.getUserListWithFriends()
+        subscribe = mUserDao.getUsersWithFriends()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userList -> {
@@ -66,7 +67,10 @@ public class MainPresenter implements MainContract.Presenter {
                 .subscribe(new DisposableSingleObserver<List<User>>() {
                     @Override
                     public void onSuccess(@NonNull List<User> userList) {
-                        mUserDao.saveUsersWithFriends(userList);
+                        mUserDao.saveUserList(userList);
+                        for (User user : userList) {
+                            mUserDao.saveFriendList(user.getFriendList());
+                        }
                         loadUserListFromDB();
                     }
 
@@ -78,7 +82,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void onItemSelected(User user) {
+    public void onItemSelected(UserWithFriends user) {
         mView.navigateToAnotherScreen(user);
     }
 

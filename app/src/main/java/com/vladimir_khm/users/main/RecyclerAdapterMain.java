@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.vladimir_khm.users.R;
 import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.model.UserWithFriends;
 
 import java.util.List;
 
@@ -18,9 +19,9 @@ import butterknife.ButterKnife;
 public class RecyclerAdapterMain extends RecyclerView.Adapter<RecyclerAdapterMain.ViewHolder> {
 
     private OnItemClickListener mListener;
-    private List<User> mData;
+    private List<UserWithFriends> mData;
 
-    RecyclerAdapterMain(List<User> dataSet, OnItemClickListener listener) {
+    RecyclerAdapterMain(List<UserWithFriends> dataSet, OnItemClickListener listener) {
         mData = dataSet;
         mListener = listener;
     }
@@ -37,7 +38,8 @@ public class RecyclerAdapterMain extends RecyclerView.Adapter<RecyclerAdapterMai
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapterMain.ViewHolder holder, int position) {
-        User user = mData.get(position);
+        UserWithFriends userWithFriends = mData.get(position);
+        User user = userWithFriends.getUser();
         holder.mTextViewName.setText(user.getName());
         holder.mTextViewCompany.setText(user.getCompany());
         holder.mTextViewGender.setText(user.getGender());
