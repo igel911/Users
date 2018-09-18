@@ -1,6 +1,6 @@
 package com.vladimir_khm.users.app;
 
-import com.vladimir_khm.users.main.MainActivity;
+import com.vladimir_khm.users.main.MainPresenter;
 
 import javax.inject.Singleton;
 
@@ -10,5 +10,5 @@ import dagger.Component;
 @Component(modules = {PresenterModule.class})
 public interface AppComponent {
 
-    void injectsMainActivity(MainActivity mainActivity);
+    void inject(MainPresenter mainPresenter);
 }

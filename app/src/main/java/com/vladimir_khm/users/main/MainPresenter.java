@@ -3,40 +3,41 @@ package com.vladimir_khm.users.main;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.MvpPresenter;
 import com.vladimir_khm.users.UsersApi;
+import com.vladimir_khm.users.app.App;
 import com.vladimir_khm.users.model.User;
 import com.vladimir_khm.users.model.UserWithFriends;
 import com.vladimir_khm.users.repository.UserWithFriendsDao;
 
 import java.util.List;
 
+
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainPresenter implements MainContract.Presenter {
+@InjectViewState
+public class MainPresenter extends MvpPresenter<MainView> {
 
-    private MainContract.View mView;
-    private UserWithFriendsDao mUserDao;
-    private UsersApi mUsersApi;
+    @Inject UserWithFriendsDao mUserDao;
+    @Inject UsersApi mUsersApi;
     private List<UserWithFriends> mUserList;
-    private Disposable subscribe;
     private final String TAG = "tag";
+    private Disposable subscribe;
 
 
-    public MainPresenter(UserWithFriendsDao userDao, UsersApi usersApi) {
-        mUserDao = userDao;
-        mUsersApi = usersApi;
+    MainPresenter() {
+        App.getComponent().inject(this);
     }
 
     @Override
-    public void attachView(MainContract.View view) {
-        mView = view;
-    }
-
-    @Override
-    public void viewIsReady() {
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
         loadUserListFromDB();
     }
 
@@ -56,7 +57,8 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void showUserList() {
-        mView.showUserList(mUserList);
+        getViewState().showUserList(mUserList);
+        subscribe.dispose();
     }
 
     private void loadUserListFromNet() {
@@ -81,14 +83,7 @@ public class MainPresenter implements MainContract.Presenter {
                 });
     }
 
-    @Override
     public void onItemSelected(UserWithFriends user) {
-        mView.navigateToAnotherScreen(user);
-    }
-
-    @Override
-    public void detachView() {
-        mView = null;
-        subscribe.dispose();
+        getViewState().navigateToAnotherScreen(user);
     }
 }
