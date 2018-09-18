@@ -78,7 +78,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.e(TAG, "MainPresenter.viewIsReady: " + e);
+                        Log.e(TAG, "MainPresenter.loadUserListFromNet: " + e);
                     }
                 });
     }

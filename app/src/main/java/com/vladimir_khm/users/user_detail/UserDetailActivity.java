@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 import com.vladimir_khm.users.R;
 import com.vladimir_khm.users.model.User;
 import com.vladimir_khm.users.model.UserWithFriends;
@@ -50,7 +50,7 @@ public class UserDetailActivity extends AppCompatActivity {
 
         UserWithFriends userWithFriends = (UserWithFriends) getIntent().getSerializableExtra(USER);
         User user = userWithFriends.getUser();
-        Picasso.get()
+        Glide.with(this)
                 .load(user.getPictureUrl())
                 .into(mImageView);
         tvUserName.setText(user.getName());
