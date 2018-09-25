@@ -14,13 +14,8 @@ import java.io.Serializable;
         indices = {@Index("userId")})
 public class Friend implements Serializable {
 
-    @ColumnInfo(name = "friend_id")
-    private int mId;
-
-    @ColumnInfo(name = "friend_name")
-    @NonNull
-    private String mName = "";
-
+    @ColumnInfo(name = "friend_id") private int mId;
+    @ColumnInfo(name = "friend_name") @NonNull private String mName = "";
     private String userId;
 
 

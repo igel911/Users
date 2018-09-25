@@ -9,12 +9,12 @@ import org.joda.time.DateTime;
 public class DaoConverters {
 
     @TypeConverter
-    public static DateTime fromTimestamp(String value) {
+    static DateTime fromTimestamp(String value) {
         return value == null ? null : DateTimeConverter.toDateTime(value);
     }
 
     @TypeConverter
-    public static String dateToTimestamp(DateTime date) {
+    static String dateToTimestamp(DateTime date) {
         return date == null ? null : DateTimeConverter.toString(date);
     }
 

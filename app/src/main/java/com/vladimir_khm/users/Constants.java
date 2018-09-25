@@ -24,5 +24,6 @@ public interface Constants {
     String USER_FRIENDS = "friends";
     String USER_FAVORITE_FRUIT = "favoriteFruit";
     String DATA_BASE_NAME = "database";
+    String TAG = "tag";
     DateTimeFormatter FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss ZZ");
 }

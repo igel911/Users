@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
+import com.vladimir_khm.users.BasePresenter;
 import com.vladimir_khm.users.UsersApi;
 import com.vladimir_khm.users.app.App;
 import com.vladimir_khm.users.model.User;
@@ -21,14 +21,13 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.vladimir_khm.users.Constants.TAG;
+
 @InjectViewState
-public class MainPresenter extends MvpPresenter<MainView> {
+public class MainPresenter extends BasePresenter<MainView> {
 
     @Inject UserWithFriendsDao mUserDao;
     @Inject UsersApi mUsersApi;
-    private List<UserWithFriends> mUserList;
-    private final String TAG = "tag";
-    private Disposable subscribe;
 
 
     MainPresenter() {
@@ -42,27 +41,25 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     private void loadUserListFromDB() {
-        subscribe = mUserDao.getUsersWithFriends()
-                .subscribeOn(Schedulers.io())
+        Disposable subscribe = mUserDao.getUsersWithFriends()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userList -> {
-                    mUserList = userList;
-                    if (mUserList.isEmpty()) {
+                    if (userList.isEmpty()) {
+                        Log.d(TAG, "load data from internet");
                         loadUserListFromNet();
                     } else {
                         Log.d(TAG, "load data from db");
-                        showUserList();
+                        showUserList(userList);
                     }
                 });
+        unsubscribeOnDestroy(subscribe);
     }
 
-    private void showUserList() {
-        getViewState().showUserList(mUserList);
-        subscribe.dispose();
+    private void showUserList(List<UserWithFriends> userList) {
+        getViewState().showUserList(userList);
     }
 
     private void loadUserListFromNet() {
-        Log.d(TAG, "load data from internet");
         mUsersApi.users()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
@@ -73,7 +70,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
                         for (User user : userList) {
                             mUserDao.saveFriendList(user.getFriendList());
                         }
-                        loadUserListFromDB();
                     }
 
                     @Override
@@ -83,7 +79,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 });
     }
 
-    public void onItemSelected(UserWithFriends user) {
+    void onItemSelected(UserWithFriends user) {
         getViewState().navigateToAnotherScreen(user);
     }
 }
