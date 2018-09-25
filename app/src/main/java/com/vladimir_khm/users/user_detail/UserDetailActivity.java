@@ -2,13 +2,14 @@ package com.vladimir_khm.users.user_detail;
 
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bumptech.glide.Glide;
 import com.vladimir_khm.users.R;
 import com.vladimir_khm.users.model.User;
@@ -19,9 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.widget.LinearLayout.VERTICAL;
-import static com.vladimir_khm.users.Constants.USER;
+import static com.vladimir_khm.users.Constants.USER_ID;
 
-public class UserDetailActivity extends AppCompatActivity {
+public class UserDetailActivity extends MvpAppCompatActivity implements DetailView {
 
     @BindView(R.id.imageViewDetail) ImageView mImageView;
     @BindView(R.id.tvUserNameDetail) TextView tvUserName;
@@ -40,6 +41,7 @@ public class UserDetailActivity extends AppCompatActivity {
     @BindView(R.id.tvUserFavoriteFruitDetail) TextView tvUserFavoriteFruit;
     @BindView(R.id.tvUserTagsDetail) TextView tvUserTags;
     @BindView(R.id.recyclerViewDetail) RecyclerView mRecyclerView;
+    @InjectPresenter DetailPresenter mPresenter;
 
 
     @Override
@@ -48,7 +50,17 @@ public class UserDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_detail);
         ButterKnife.bind(this);
 
-        UserWithFriends userWithFriends = (UserWithFriends) getIntent().getSerializableExtra(USER);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, VERTICAL, false));
+        DividerItemDecoration dividerItemDecoration =
+                new DividerItemDecoration(mRecyclerView.getContext(), VERTICAL);
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        String userId = getIntent().getStringExtra(USER_ID);
+        mPresenter.viewIsReady(userId);
+    }
+
+    @Override
+    public void showUserWithFriends(UserWithFriends userWithFriends) {
         User user = userWithFriends.getUser();
         Glide.with(this)
                 .load(user.getPictureUrl())
@@ -69,10 +81,6 @@ public class UserDetailActivity extends AppCompatActivity {
         tvUserFavoriteFruit.setText(user.getFavoriteFruit());
         tvUserTags.setText(user.getTags());
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, VERTICAL, false));
-        DividerItemDecoration dividerItemDecoration =
-                new DividerItemDecoration(mRecyclerView.getContext(), VERTICAL);
-        mRecyclerView.addItemDecoration(dividerItemDecoration);
         mRecyclerView.setAdapter(new RecyclerAdapterDetail(userWithFriends.getFriendList()));
     }
 }

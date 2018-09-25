@@ -11,20 +11,32 @@ import com.vladimir_khm.users.model.UserWithFriends;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 @Dao
-public interface UserWithFriendsDao {
+public abstract class UserWithFriendsDao {
 
+    @Transaction
+    @Query("SELECT * FROM user WHERE mId = :userId")
+    public abstract Single<UserWithFriends> getUserWithFriends(String userId);
+
+    @Transaction
     @Query("SELECT * FROM user")
-    @Transaction
-    Single<List<UserWithFriends>> getUsersWithFriends();
+    public abstract Flowable<List<User>> getUserList();
 
     @Insert
     @Transaction
-    void saveUserList(List<User> userList);
+    public void saveUserList(List<User> userList) {
+        insertUserList(userList);
+        for (User user : userList) {
+            insertFriendList(user.getFriendList());
+        }
+    }
 
     @Insert
-    @Transaction
-    void saveFriendList(List<Friend> friendList);
+    abstract void insertUserList(List<User> userList);
+
+    @Insert
+    abstract void insertFriendList(List<Friend> friendList);
 }

@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vladimir_khm.users.R;
-import com.vladimir_khm.users.model.UserWithFriends;
+import com.vladimir_khm.users.model.User;
 import com.vladimir_khm.users.user_detail.UserDetailActivity;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.widget.LinearLayout.VERTICAL;
-import static com.vladimir_khm.users.Constants.USER;
+import static com.vladimir_khm.users.Constants.USER_ID;
 
 public class MainActivity extends MvpAppCompatActivity implements OnItemClickListener, MainView {
 
@@ -39,19 +39,19 @@ public class MainActivity extends MvpAppCompatActivity implements OnItemClickLis
     }
 
     @Override
-    public void onItemClick(UserWithFriends user) {
+    public void onItemClick(User user) {
         mPresenter.onItemSelected(user);
     }
 
     @Override
-    public void showUserList(List<UserWithFriends> userList) {
+    public void showUserList(List<User> userList) {
         mRecyclerView.setAdapter(new RecyclerAdapterMain(userList, this));
     }
 
     @Override
-    public void navigateToAnotherScreen(UserWithFriends user) {
+    public void navigateToAnotherScreen(String userId) {
         Intent intent = new Intent(this, UserDetailActivity.class);
-        intent.putExtra(USER, user);
+        intent.putExtra(USER_ID, userId);
         startActivity(intent);
     }
 }

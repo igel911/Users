@@ -5,7 +5,6 @@ import org.joda.time.format.DateTimeFormatter;
 
 public interface Constants {
 
-    String USER = "USER";
     String USER_ID = "id";
     String USER_IS_ACTIVE = "isActive";
     String USER_BALANCE = "balance";
@@ -24,5 +23,6 @@ public interface Constants {
     String USER_FRIENDS = "friends";
     String USER_FAVORITE_FRUIT = "favoriteFruit";
     String DATA_BASE_NAME = "database";
+    String TAG = "tag";
     DateTimeFormatter FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss ZZ");
 }
