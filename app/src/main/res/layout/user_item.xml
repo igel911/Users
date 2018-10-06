@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.vladimir_khm.users.model.User"/>
+    </data>
+
+<android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="81dp">
@@ -25,7 +33,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@{user.name}"/>
 
     <TextView
         android:id="@+id/tvCompanyMain"
@@ -46,7 +55,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserNameMain" />
+        app:layout_constraintTop_toBottomOf="@id/tvUserNameMain"
+        android:text="@{user.company}"/>
 
     <TextView
         android:id="@+id/tvGenderMain"
@@ -67,6 +77,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvUserCompanyMain" />
+        app:layout_constraintTop_toBottomOf="@id/tvUserCompanyMain"
+        android:text="@{user.gender}"/>
 
 </android.support.constraint.ConstraintLayout>
+</layout>

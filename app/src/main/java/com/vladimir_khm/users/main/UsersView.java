@@ -7,7 +7,7 @@ import com.vladimir_khm.users.model.User;
 
 import java.util.List;
 
-public interface MainView extends MvpView {
+public interface UsersView extends MvpView {
 
     void showUserList(List<User> userList);
 

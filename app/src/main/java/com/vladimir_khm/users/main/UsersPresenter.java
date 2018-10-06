@@ -22,14 +22,16 @@ import io.reactivex.schedulers.Schedulers;
 import static com.vladimir_khm.users.Constants.TAG;
 
 @InjectViewState
-public class MainPresenter extends BasePresenter<MainView> {
+public class UsersPresenter extends BasePresenter<UsersView> {
 
-    @Inject UserWithFriendsDao mUserDao;
-    @Inject UsersApi mUsersApi;
+    @Inject
+    UserWithFriendsDao mUserDao;
+    @Inject
+    UsersApi mUsersApi;
 
 
-    MainPresenter() {
-        App.getComponent().injectMain(this);
+    UsersPresenter() {
+        App.getComponent().injectUsers(this);
     }
 
     @Override
@@ -69,7 +71,7 @@ public class MainPresenter extends BasePresenter<MainView> {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.e(TAG, "MainPresenter.loadUserListFromNet: " + e);
+                        Log.e(TAG, "UsersPresenter.loadUserListFromNet: " + e);
                     }
                 });
     }

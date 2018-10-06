@@ -6,6 +6,7 @@ import com.vladimir_khm.users.app.App;
 import com.vladimir_khm.users.model.UserWithFriends;
 import com.vladimir_khm.users.repository.UserWithFriendsDao;
 
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -15,7 +16,8 @@ import io.reactivex.schedulers.Schedulers;
 @InjectViewState
 public class DetailPresenter extends BasePresenter<DetailView> {
 
-    @Inject UserWithFriendsDao mUserDao;
+    @Inject
+    UserWithFriendsDao mUserDao;
 
 
     DetailPresenter() {

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4fe1c0ceeb5fd744d78c60256ef7cc5e",
+    "identityHash": "90e669d6faef43d05348583d8f6b92f1",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mId` TEXT NOT NULL, `mIsActive` INTEGER NOT NULL, `mBalance` TEXT, `mPictureUrl` TEXT, `mAge` INTEGER NOT NULL, `mEyeColor` TEXT, `mName` TEXT, `mGender` TEXT, `mCompany` TEXT, `mEmail` TEXT, `mPhone` TEXT, `mAddress` TEXT, `mAbout` TEXT, `mRegistered` TEXT, `mTags` TEXT, `mFavoriteFruit` TEXT, PRIMARY KEY(`mId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mId` TEXT NOT NULL, `mIsActive` INTEGER NOT NULL, `mBalance` TEXT, `mPictureUrl` TEXT, `mAge` INTEGER NOT NULL, `mEyeColor` TEXT, `mName` TEXT, `mGender` TEXT, `mCompany` TEXT, `mEmail` TEXT, `mPhone` TEXT, `mAddress` TEXT, `mAbout` TEXT, `mRegistered` TEXT, `mTagList` TEXT, `mFavoriteFruit` TEXT, PRIMARY KEY(`mId`))",
         "fields": [
           {
             "fieldPath": "mId",
@@ -93,8 +93,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "mTags",
-            "columnName": "mTags",
+            "fieldPath": "mTagList",
+            "columnName": "mTagList",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -171,7 +171,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4fe1c0ceeb5fd744d78c60256ef7cc5e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"90e669d6faef43d05348583d8f6b92f1\")"
     ]
   }
 }
