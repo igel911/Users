@@ -11,18 +11,20 @@ import com.vladimir_khm.users.repository.DaoConverters;
 
 import org.joda.time.DateTime;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @JsonAdapter(UserTypeAdapter.class)
-public class User implements Serializable {
+@TypeConverters({DaoConverters.class})
+public class User {
 
-    @NonNull @PrimaryKey private String mId = "";
+    @NonNull
+    @PrimaryKey
+    private String mId = "";
     private boolean mIsActive;
+    private int mAge;
     private String mBalance;
     private String mPictureUrl;
-    private int mAge;
     private String mEyeColor;
     private String mName;
     private String mGender;
@@ -31,10 +33,12 @@ public class User implements Serializable {
     private String mPhone;
     private String mAddress;
     private String mAbout;
-    @TypeConverters({DaoConverters.class}) private DateTime mRegistered;
-    private String mTags;
-    @Ignore private List<Friend> mFriendList;
     private String mFavoriteFruit;
+    private DateTime mRegistered;
+    private List<String> mTagList;
+    @Ignore
+    private List<Friend> mFriendList;
+
 
 
     public void setAddress(String address) {
@@ -93,12 +97,12 @@ public class User implements Serializable {
         return mFriendList;
     }
 
-    public void setTags(String tags) {
-        mTags = tags;
+    public void setTagList(List<String> tagList) {
+        mTagList = tagList;
     }
 
-    public String getTags() {
-        return mTags;
+    public List<String> getTagList() {
+        return mTagList;
     }
 
     public void setFavoriteFruit(String favoriteFruit) {

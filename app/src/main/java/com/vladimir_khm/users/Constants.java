@@ -5,7 +5,6 @@ import org.joda.time.format.DateTimeFormatter;
 
 public interface Constants {
 
-    String USER = "USER";
     String USER_ID = "id";
     String USER_IS_ACTIVE = "isActive";
     String USER_BALANCE = "balance";

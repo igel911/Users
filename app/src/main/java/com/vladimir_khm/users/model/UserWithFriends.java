@@ -3,13 +3,14 @@ package com.vladimir_khm.users.model;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Relation;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class UserWithFriends implements Serializable {
+public class UserWithFriends {
 
-    @Embedded private User user;
-    @Relation(parentColumn = "mId", entityColumn = "userId") private List<Friend> friendList;
+    @Embedded
+    private User user;
+    @Relation(parentColumn = "mId", entityColumn = "userId")
+    private List<Friend> friendList;
 
 
     public User getUser() {

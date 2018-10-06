@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.vladimir_khm.users.Constants.DATA_BASE_NAME;
 
 @Module
-public class PresenterModule {
+class PresenterModule {
 
     @Singleton
     @Provides

@@ -49,7 +49,7 @@ public class UserTypeAdapter extends TypeAdapter<User> {
         writer.name(USER_REGISTERED).value(FORMATTER.print(user.getRegistered()));
         writer.name(USER_TAGS);
         writer.beginArray();
-        for (String tag : user.getTags().split("\n")) {
+        for (String tag : user.getTagList()) {
             writer.value(tag);
         }
         writer.endArray();
@@ -118,11 +118,11 @@ public class UserTypeAdapter extends TypeAdapter<User> {
                     break;
                 case USER_TAGS:
                     reader.beginArray();
-                    StringBuilder builder = new StringBuilder();
+                    List<String> tagList = new ArrayList<>();
                     while (reader.hasNext()) {
-                        builder.append("\n").append(reader.nextString());
+                        tagList.add(reader.nextString());
                     }
-                    user.setTags(builder.substring(1));
+                    user.setTagList(tagList);
                     reader.endArray();
                     break;
                 case USER_FRIENDS:

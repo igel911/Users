@@ -8,11 +8,9 @@ import com.vladimir_khm.users.BasePresenter;
 import com.vladimir_khm.users.UsersApi;
 import com.vladimir_khm.users.app.App;
 import com.vladimir_khm.users.model.User;
-import com.vladimir_khm.users.model.UserWithFriends;
 import com.vladimir_khm.users.repository.UserWithFriendsDao;
 
 import java.util.List;
-
 
 import javax.inject.Inject;
 
@@ -24,14 +22,16 @@ import io.reactivex.schedulers.Schedulers;
 import static com.vladimir_khm.users.Constants.TAG;
 
 @InjectViewState
-public class MainPresenter extends BasePresenter<MainView> {
+public class UsersPresenter extends BasePresenter<UsersView> {
 
-    @Inject UserWithFriendsDao mUserDao;
-    @Inject UsersApi mUsersApi;
+    @Inject
+    UserWithFriendsDao mUserDao;
+    @Inject
+    UsersApi mUsersApi;
 
 
-    MainPresenter() {
-        App.getComponent().inject(this);
+    UsersPresenter() {
+        App.getComponent().injectUsers(this);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MainPresenter extends BasePresenter<MainView> {
     }
 
     private void loadUserListFromDB() {
-        Disposable subscribe = mUserDao.getUsersWithFriends()
+        Disposable subscribe = mUserDao.getUserList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userList -> {
                     if (userList.isEmpty()) {
@@ -55,7 +55,7 @@ public class MainPresenter extends BasePresenter<MainView> {
         unsubscribeOnDestroy(subscribe);
     }
 
-    private void showUserList(List<UserWithFriends> userList) {
+    private void showUserList(List<User> userList) {
         getViewState().showUserList(userList);
     }
 
@@ -67,19 +67,16 @@ public class MainPresenter extends BasePresenter<MainView> {
                     @Override
                     public void onSuccess(@NonNull List<User> userList) {
                         mUserDao.saveUserList(userList);
-                        for (User user : userList) {
-                            mUserDao.saveFriendList(user.getFriendList());
-                        }
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Log.e(TAG, "MainPresenter.loadUserListFromNet: " + e);
+                        Log.e(TAG, "UsersPresenter.loadUserListFromNet: " + e);
                     }
                 });
     }
 
-    void onItemSelected(UserWithFriends user) {
-        getViewState().navigateToAnotherScreen(user);
+    void onItemSelected(User user) {
+        getViewState().navigateToAnotherScreen(user.getId());
     }
 }

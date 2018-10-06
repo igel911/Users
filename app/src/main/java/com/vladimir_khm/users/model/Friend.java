@@ -7,15 +7,17 @@ import android.arch.persistence.room.Index;
 import android.support.annotation.NonNull;
 
 
-import java.io.Serializable;
 
 @Entity(primaryKeys = {"friend_id", "friend_name"}, foreignKeys =
 @ForeignKey(entity = User.class, parentColumns = "mId", childColumns = "userId"),
         indices = {@Index("userId")})
-public class Friend implements Serializable {
+public class Friend {
 
-    @ColumnInfo(name = "friend_id") private int mId;
-    @ColumnInfo(name = "friend_name") @NonNull private String mName = "";
+    @ColumnInfo(name = "friend_id")
+    private int mId;
+    @ColumnInfo(name = "friend_name")
+    @NonNull
+    private String mName = "";
     private String userId;
 
 
