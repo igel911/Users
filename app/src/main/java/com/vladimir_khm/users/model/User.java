@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.vladimir_khm.users.repository.DaoConverters;
+import com.vladimir_khm.users.util.DateTimeConverter;
 
 import org.joda.time.DateTime;
 
@@ -175,6 +176,61 @@ public class User {
 
     public String getEmail() {
         return mEmail;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (mIsActive != user.mIsActive) return false;
+        if (mAge != user.mAge) return false;
+        if (!mId.equals(user.mId)) return false;
+        if (mBalance != null ? !mBalance.equals(user.mBalance) : user.mBalance != null)
+            return false;
+        if (mPictureUrl != null ? !mPictureUrl.equals(user.mPictureUrl) : user.mPictureUrl != null)
+            return false;
+        if (mEyeColor != null ? !mEyeColor.equals(user.mEyeColor) : user.mEyeColor != null)
+            return false;
+        if (mName != null ? !mName.equals(user.mName) : user.mName != null) return false;
+        if (mGender != null ? !mGender.equals(user.mGender) : user.mGender != null) return false;
+        if (mCompany != null ? !mCompany.equals(user.mCompany) : user.mCompany != null)
+            return false;
+        if (mEmail != null ? !mEmail.equals(user.mEmail) : user.mEmail != null) return false;
+        if (mPhone != null ? !mPhone.equals(user.mPhone) : user.mPhone != null) return false;
+        if (mAddress != null ? !mAddress.equals(user.mAddress) : user.mAddress != null)
+            return false;
+        if (mAbout != null ? !mAbout.equals(user.mAbout) : user.mAbout != null) return false;
+        if (mFavoriteFruit != null ? !mFavoriteFruit.equals(user.mFavoriteFruit) : user.mFavoriteFruit != null)
+            return false;
+        if (mRegistered != null
+                ? !DateTimeConverter.toString(mRegistered).equals(DateTimeConverter.toString(user.mRegistered))
+                : user.mRegistered != null)
+            return false;
+        return !(mTagList != null ? !mTagList.equals(user.mTagList) : user.mTagList != null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mId.hashCode();
+        result = 31 * result + (mIsActive ? 1 : 0);
+        result = 31 * result + mAge;
+        result = 31 * result + (mBalance != null ? mBalance.hashCode() : 0);
+        result = 31 * result + (mPictureUrl != null ? mPictureUrl.hashCode() : 0);
+        result = 31 * result + (mEyeColor != null ? mEyeColor.hashCode() : 0);
+        result = 31 * result + (mName != null ? mName.hashCode() : 0);
+        result = 31 * result + (mGender != null ? mGender.hashCode() : 0);
+        result = 31 * result + (mCompany != null ? mCompany.hashCode() : 0);
+        result = 31 * result + (mEmail != null ? mEmail.hashCode() : 0);
+        result = 31 * result + (mPhone != null ? mPhone.hashCode() : 0);
+        result = 31 * result + (mAddress != null ? mAddress.hashCode() : 0);
+        result = 31 * result + (mAbout != null ? mAbout.hashCode() : 0);
+        result = 31 * result + (mFavoriteFruit != null ? mFavoriteFruit.hashCode() : 0);
+        result = 31 * result + (mRegistered != null ? DateTimeConverter.toString(mRegistered).hashCode() : 0);
+        result = 31 * result + (mTagList != null ? mTagList.hashCode() : 0);
+        return result;
     }
 }
 

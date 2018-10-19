@@ -44,4 +44,24 @@ public class Friend {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Friend friend = (Friend) o;
+
+        if (mId != friend.mId) return false;
+        if (!mName.equals(friend.mName)) return false;
+        return userId != null ? userId.equals(friend.userId) : friend.userId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mId;
+        result = 31 * result + mName.hashCode();
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        return result;
+    }
 }
