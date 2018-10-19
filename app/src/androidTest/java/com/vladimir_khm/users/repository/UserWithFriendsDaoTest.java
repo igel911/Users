@@ -6,6 +6,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.vladimir_khm.users.model.User;
+import com.vladimir_khm.users.model.UserWithFriends;
 
 import org.junit.After;
 import org.junit.Before;
@@ -55,12 +56,9 @@ public class UserWithFriendsDaoTest {
     public void whenInsertUserThenReadUserWithFriends() {
         List<User> userList = TestHelper.getPreparedUserList(1);
         mUsersDao.saveUserList(userList);
-        User user = userList.get(0);
-        mUsersDao.getUserWithFriends(user.getId())
+        UserWithFriends userBeforeSaving = TestHelper.getPreparedUserWithFriends(userList.get(0));
+        mUsersDao.getUserWithFriends(userBeforeSaving.getUser().getId())
                 .test()
-                .assertValue(userWithFriends -> {
-                    if (!userWithFriends.getUser().equals(user)) return false;
-                    return userWithFriends.getFriendList().equals(user.getFriendList());
-                });
+                .assertValue(userBeforeSaving);
     }
 }

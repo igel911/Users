@@ -3,7 +3,6 @@ package com.vladimir_khm.users.repository;
 import com.vladimir_khm.users.model.Friend;
 import com.vladimir_khm.users.model.User;
 import com.vladimir_khm.users.model.UserWithFriends;
-import com.vladimir_khm.users.util.DateTimeConverter;
 
 import org.joda.time.DateTime;
 
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TestHelper {
+class TestHelper {
 
     private TestHelper() {}
 
@@ -54,7 +53,7 @@ public class TestHelper {
         return preparedUserList;
     }
 
-    public static UserWithFriends getPreparedUserWithFriends(User user) {
+    static UserWithFriends getPreparedUserWithFriends(User user) {
         UserWithFriends userWithFriends = new UserWithFriends();
         userWithFriends.setUser(user);
         userWithFriends.setFriendList(user.getFriendList());
