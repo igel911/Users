@@ -1,4 +1,4 @@
-package com.vladimir_khm.users.repository;
+package com.vladimir_khm.users;
 
 import com.vladimir_khm.users.model.Friend;
 import com.vladimir_khm.users.model.User;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class TestHelper {
+public class TestHelper {
 
     private TestHelper() {}
 
-    static List<User> getPreparedUserList(int countOfUsers) {
+    public static List<User> getPreparedUserList(int countOfUsers) {
         List<User> preparedUserList = new ArrayList<>();
         for (int i = 0; i < countOfUsers; i++) {
             List<String> tagList = new ArrayList<>();
@@ -53,7 +53,7 @@ class TestHelper {
         return preparedUserList;
     }
 
-    static UserWithFriends getPreparedUserWithFriends(User user) {
+    public static UserWithFriends getPreparedUserWithFriends(User user) {
         UserWithFriends userWithFriends = new UserWithFriends();
         userWithFriends.setUser(user);
         userWithFriends.setFriendList(user.getFriendList());

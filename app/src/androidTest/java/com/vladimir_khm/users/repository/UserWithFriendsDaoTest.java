@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.vladimir_khm.users.TestHelper;
 import com.vladimir_khm.users.model.User;
 import com.vladimir_khm.users.model.UserWithFriends;
 
